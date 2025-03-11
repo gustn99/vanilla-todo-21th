@@ -1,7 +1,5 @@
 const appendButton = document.querySelector("#append-button");
 const deleteButtons = document.querySelectorAll(".delete-button");
-
-const todoItems = document.querySelectorAll(".todo-item");
 const checkboxes = document.querySelectorAll(".todo-item input");
 
 const CHECKED_CLASS = "checked-todo-content";
@@ -28,10 +26,7 @@ function handleAppendButtonClick(e) {
   button.innerText = "삭제";
 
   input.addEventListener("change", handleCheckboxChange);
-
-  button.onclick = () => {
-    li.remove();
-  };
+  button.addEventListener("click", handleDeleteButtonClick);
 
   li.appendChild(input);
   li.appendChild(label);
@@ -40,6 +35,11 @@ function handleAppendButtonClick(e) {
   ul.appendChild(li);
 
   newTodo.value = "";
+}
+
+function handleDeleteButtonClick(e) {
+  const li = e.target.parentElement;
+  li.remove();
 }
 
 function handleCheckboxChange(e) {
@@ -55,9 +55,8 @@ function handleCheckboxChange(e) {
 
 appendButton.addEventListener("click", handleAppendButtonClick);
 
-deleteButtons.forEach(
-  (deletebutton, i) =>
-    (deletebutton.onclick = () => todoItems[i].parentElement.remove())
+deleteButtons.forEach((deletebutton) =>
+  deletebutton.addEventListener("click", handleDeleteButtonClick)
 );
 
 checkboxes.forEach((checkbox) =>
