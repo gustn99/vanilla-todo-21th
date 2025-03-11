@@ -1,13 +1,18 @@
+const todoInput = document.querySelector('input[type="text"]');
 const appendButton = document.querySelector("#append-button");
 const deleteButtons = document.querySelectorAll(".delete-button");
 const checkboxes = document.querySelectorAll(".todo-item input");
 
 const CHECKED_CLASS = "checked-todo-content";
 
-function handleAppendButtonClick(e) {
-  const newTodo = e.target.previousElementSibling;
+function handleEnterKeyDown(e) {
+  if (e.key === "Enter") {
+    submitNewTodo();
+  }
+}
 
-  if (newTodo.value === "") return;
+function submitNewTodo() {
+  if (todoInput.value === "") return;
 
   const ul = document.querySelector(".todo-list");
   const nth = ul.childElementCount;
@@ -21,7 +26,7 @@ function handleAppendButtonClick(e) {
   input.type = "checkbox";
   input.id = `todo-${nth}`;
   label.htmlFor = `todo-${nth}`;
-  label.innerText = newTodo.value;
+  label.innerText = todoInput.value;
   button.classList.add("delete-button");
   button.innerText = "삭제";
 
@@ -34,7 +39,7 @@ function handleAppendButtonClick(e) {
 
   ul.appendChild(li);
 
-  newTodo.value = "";
+  todoInput.value = "";
 }
 
 function handleDeleteButtonClick(e) {
@@ -53,7 +58,9 @@ function handleCheckboxChange(e) {
   }
 }
 
-appendButton.addEventListener("click", handleAppendButtonClick);
+todoInput.addEventListener("keydown", handleEnterKeyDown);
+
+appendButton.addEventListener("click", submitNewTodo);
 
 deleteButtons.forEach((deletebutton) =>
   deletebutton.addEventListener("click", handleDeleteButtonClick)
