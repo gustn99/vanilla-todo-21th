@@ -110,6 +110,7 @@ button {
 .todo-item label {
   padding: 7px 0;
   cursor: pointer;
+  white-space: nowrap;
   overflow: scroll;
   scrollbar-width: none;
 }
