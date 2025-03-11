@@ -39,6 +39,9 @@ function openModal(label) {
   buttonWrapper.appendChild(confirmButton);
 
   document.body.appendChild(modalWrapper);
+
+  // 엔터 입력으로 확인 버튼이 눌릴 수 있도록 포커싱
+  confirmButton.focus();
 }
 
 function closeModal() {
