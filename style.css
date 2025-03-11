@@ -35,10 +35,11 @@ li {
 }
 
 button {
-  border: none;
   width: 50px;
   height: 31px;
   margin-left: auto;
+  border: none;
+  border-radius: 2px;
   color: darkslategrey;
   cursor: pointer;
 }
@@ -85,7 +86,8 @@ button {
   padding: 5px 0;
   border-bottom: 1.5px solid darkslategrey;
 
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr 50px;
   gap: 4px;
   align-items: center;
 
@@ -98,14 +100,22 @@ button {
   height: 16px;
   border: 1.5px solid darkslategrey;
   border-radius: 2px;
+  cursor: pointer;
 }
 
 .todo-item input:checked {
   background-color: darkslategrey;
 }
 
+.todo-item label {
+  padding: 7px 0;
+  cursor: pointer;
+  overflow: scroll;
+  scrollbar-width: none;
+}
+
 .checked-todo-content {
-  color: gray;
+  color: rgb(150, 150, 150);
   text-decoration: line-through;
 }
 
@@ -127,8 +137,8 @@ button {
 }
 
 .modal {
-  width: 330px;
-  height: 190px;
+  width: 300px;
+  height: 150px;
   padding: 20px;
   box-sizing: border-box;
 
@@ -139,6 +149,9 @@ button {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+
+  font-size: small;
+  text-align: center;
 }
 
 .modal-content {
@@ -148,15 +161,6 @@ button {
 .button-wrapper {
   display: flex;
   gap: 8px;
-}
-
-.cancel-button,
-.confirm-button {
-  width: 60px;
-  height: 35px;
-  border-radius: 2px;
-  text-align: center;
-  align-items: center;
 }
 
 .confirm-button {

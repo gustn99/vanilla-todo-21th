@@ -22,7 +22,7 @@ function openModal(label) {
   cancelButton.classList.add("cancel-button");
   confirmButton.classList.add("confirm-button");
 
-  content.innerText = "완료되지 않은 할 일을 삭제합니다.";
+  content.innerText = "완료되지 않은 투두입니다.\n정말로 삭제할까요?";
   cancelButton.innerText = "취소";
   confirmButton.innerText = "삭제";
 
