@@ -1,4 +1,3 @@
-const todoInput = document.querySelector(".todo-input input");
 const appendButton = document.querySelector("#append-button");
 const deleteButtons = document.querySelectorAll(".delete-button");
 
@@ -6,6 +5,42 @@ const todoItems = document.querySelectorAll(".todo-item");
 const checkboxes = document.querySelectorAll(".todo-item input");
 
 const CHECKED_CLASS = "checked-todo-content";
+
+function handleAppendButtonClick(e) {
+  const newTodo = e.target.previousElementSibling;
+
+  if (newTodo.value === "") return;
+
+  const ul = document.querySelector(".todo-list");
+  const nth = ul.childElementCount;
+
+  const li = document.createElement("li");
+  const input = document.createElement("input");
+  const label = document.createElement("label");
+  const button = document.createElement("button");
+
+  li.classList.add("todo-item");
+  input.type = "checkbox";
+  input.id = `todo-${nth}`;
+  label.htmlFor = `todo-${nth}`;
+  label.innerText = newTodo.value;
+  button.classList.add("delete-button");
+  button.innerText = "삭제";
+
+  input.addEventListener("change", handleCheckboxChange);
+
+  button.onclick = () => {
+    li.remove();
+  };
+
+  li.appendChild(input);
+  li.appendChild(label);
+  li.appendChild(button);
+
+  ul.appendChild(li);
+
+  newTodo.value = "";
+}
 
 function handleCheckboxChange(e) {
   const checkboxId = e.target.id;
@@ -18,38 +53,7 @@ function handleCheckboxChange(e) {
   }
 }
 
-appendButton.onclick = () => {
-  if (todoInput.value === "") return;
-
-  const ul = document.querySelector(".todo-list");
-
-  const li = document.createElement("li");
-  const label = document.createElement("label");
-  const input = document.createElement("input");
-  const div = document.createElement("div");
-  const button = document.createElement("button");
-
-  label.classList.add("todo-item");
-  input.type = "checkbox";
-  div.innerText = todoInput.value;
-  button.classList.add("delete-button");
-  button.innerText = "삭제";
-
-  input.addEventListener("change", handleCheckboxChange);
-
-  button.onclick = () => {
-    li.remove();
-  };
-
-  li.appendChild(label);
-  label.appendChild(input);
-  label.appendChild(div);
-  label.appendChild(button);
-
-  ul.appendChild(li);
-
-  todoInput.value = "";
-};
+appendButton.addEventListener("click", handleAppendButtonClick);
 
 deleteButtons.forEach(
   (deletebutton, i) =>
