@@ -17,7 +17,7 @@
         <div>
           <div class="todo-input">
             <input type="text" placeholder="할 일을 입력하세요..." />
-            <button>추가</button>
+            <button id="append-button">추가</button>
           </div>
 
           <ul class="todo-list">
@@ -25,14 +25,14 @@
               <label class="todo-item">
                 <input type="checkbox" name="todo" id="" />
                 <div>12시 기상</div>
-                <button>삭제</button>
+                <button class="delete-button">삭제</button>
               </label>
             </li>
             <li>
               <label class="todo-item">
-                <input checked type="checkbox" name="todo" id="" />
+                <input type="checkbox" name="todo" id="" />
                 <div class="checked-todo-item">12시 기상</div>
-                <button>삭제</button>
+                <button class="delete-button">삭제</button>
               </label>
             </li>
           </ul>
@@ -40,5 +40,6 @@
         <div class="side"></div>
       </main>
     </div>
+    <script src="script.js"></script>
   </body>
 </html>

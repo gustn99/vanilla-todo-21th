@@ -104,7 +104,7 @@ button {
   background-color: darkslategrey;
 }
 
-.checked-todo-item {
+.checked-todo-content {
   color: gray;
   text-decoration: line-through;
 }
