@@ -54,6 +54,7 @@ function handleOutsideClick(e) {
 function handleConfirmButtonClick(label) {
   const li = label.parentElement;
   li.remove();
+  closeModal();
 }
 
 deleteButtons.forEach((deletebutton) =>
