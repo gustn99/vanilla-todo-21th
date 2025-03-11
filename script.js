@@ -4,7 +4,19 @@ const deleteButtons = document.querySelectorAll(".delete-button");
 
 const todoItems = document.querySelectorAll(".todo-item");
 const checkboxes = document.querySelectorAll(".todo-item input");
-const todoContents = document.querySelectorAll(".todo-item div");
+
+const CHECKED_CLASS = "checked-todo-content";
+
+function handleCheckboxChange(e) {
+  const checkboxId = e.target.id;
+  const label = document.querySelector(`label[for="${checkboxId}"]`);
+
+  if (e.target.checked) {
+    label.classList.add(CHECKED_CLASS);
+  } else {
+    label.classList.remove(CHECKED_CLASS);
+  }
+}
 
 appendButton.onclick = () => {
   if (todoInput.value === "") return;
@@ -23,13 +35,7 @@ appendButton.onclick = () => {
   button.classList.add("delete-button");
   button.innerText = "삭제";
 
-  input.onchange = () => {
-    if (input.checked) {
-      div.classList.add("checked-todo-content");
-    } else {
-      div.classList.remove("checked-todo-content");
-    }
-  };
+  input.addEventListener("change", handleCheckboxChange);
 
   button.onclick = () => {
     li.remove();
@@ -50,13 +56,6 @@ deleteButtons.forEach(
     (deletebutton.onclick = () => todoItems[i].parentElement.remove())
 );
 
-checkboxes.forEach(
-  (checkbox, i) =>
-    (checkbox.onchange = () => {
-      if (checkbox.checked) {
-        todoContents[i].classList.add("checked-todo-content");
-      } else {
-        todoContents[i].classList.remove("checked-todo-content");
-      }
-    })
+checkboxes.forEach((checkbox) =>
+  checkbox.addEventListener("change", handleCheckboxChange)
 );
