@@ -45,10 +45,10 @@ function submitNewTodo() {
 }
 
 function handleDeleteButtonClick(e) {
-  const content = e.target.previousElementSibling;
-  if (!content.classList.contains(CHECKED_CLASS)) {
-    return;
-  } else {
+  const label = e.target.previousElementSibling;
+
+  // 완료된 투두 삭제
+  if (label.classList.contains(CHECKED_CLASS)) {
     const li = e.target.parentElement;
     li.remove();
   }

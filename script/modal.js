@@ -1,6 +1,7 @@
 function handleUncheckedDeleteButtonClick(e) {
   const label = e.target.previousElementSibling;
 
+  // 완료되지 않은 투두 삭제 시 확인 모달
   if (!label.classList.contains(CHECKED_CLASS)) {
     openModal(label);
   }
