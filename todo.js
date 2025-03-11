@@ -17,34 +17,41 @@ function submitNewTodo() {
   const ul = document.querySelector(".todo-list");
   const nth = ul.childElementCount;
 
-  const li = document.createElement("li");
-  const input = document.createElement("input");
-  const label = document.createElement("label");
-  const button = document.createElement("button");
+  const newTodo = document.createElement("li");
+  const checkbox = document.createElement("input");
+  const content = document.createElement("label");
+  const deleteButton = document.createElement("button");
 
-  li.classList.add("todo-item");
-  input.type = "checkbox";
-  input.id = `todo-${nth}`;
-  label.htmlFor = `todo-${nth}`;
-  label.innerText = todoInput.value;
-  button.classList.add("delete-button");
-  button.innerText = "삭제";
+  newTodo.classList.add("todo-item");
+  deleteButton.classList.add("delete-button");
 
-  input.addEventListener("change", handleCheckboxChange);
-  button.addEventListener("click", handleDeleteButtonClick);
+  checkbox.type = "checkbox";
+  checkbox.id = `todo-${nth}`;
+  content.htmlFor = `todo-${nth}`;
+  content.innerText = todoInput.value;
+  deleteButton.innerText = "삭제";
 
-  li.appendChild(input);
-  li.appendChild(label);
-  li.appendChild(button);
+  checkbox.addEventListener("change", handleCheckboxChange);
+  deleteButton.addEventListener("click", handleDeleteButtonClick);
+  deleteButton.addEventListener("click", handleUncheckedDeleteButtonClick);
 
-  ul.appendChild(li);
+  newTodo.appendChild(checkbox);
+  newTodo.appendChild(content);
+  newTodo.appendChild(deleteButton);
+
+  ul.appendChild(newTodo);
 
   todoInput.value = "";
 }
 
 function handleDeleteButtonClick(e) {
-  const li = e.target.parentElement;
-  li.remove();
+  const content = e.target.previousElementSibling;
+  if (!content.classList.contains(CHECKED_CLASS)) {
+    return;
+  } else {
+    const li = e.target.parentElement;
+    li.remove();
+  }
 }
 
 function handleCheckboxChange(e) {
